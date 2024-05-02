@@ -7,7 +7,7 @@ const { employeeRouter } = require("./routes/employee.route");
 
 const app = express();
 
-app.use(cors(),express.json());
+app.use(express.json(),cors());
 
 app.get("/",async(req,res)=>{
     try{
