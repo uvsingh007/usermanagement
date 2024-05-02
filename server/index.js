@@ -1,13 +1,14 @@
-require("dotenv").config();
 const express = require('express');
-const cors = require("cors");
+const cors = require('cors');
 const { connection } = require("./config/db");
 const { userRouter } = require("./routes/user.route");
 const { employeeRouter } = require("./routes/employee.route");
-
+require("dotenv").config();
 const app = express();
 
 app.use(express.json(),cors());
+app.use("/user",userRouter);
+app.use("/employee",employeeRouter)
 
 app.get("/",async(req,res)=>{
     try{
@@ -22,9 +23,6 @@ app.get("/",async(req,res)=>{
         })
     }
 })
-
-app.use("/user",userRouter);
-app.use("/employee",employeeRouter)
 
 app.listen(process.env.port,async()=>{
     try{
